@@ -18,15 +18,17 @@
 package endpoint
 
 import (
-	"github.com/siddontang/go-mysql/canal"
 	"log"
 	"strings"
 	"sync"
+
+	"github.com/siddontang/go-mysql/canal"
 
 	"github.com/Shopify/sarama"
 	"github.com/juju/errors"
 	"github.com/siddontang/go-mysql/mysql"
 
+	"encoding/json"
 	"go-mysql-transfer/global"
 	"go-mysql-transfer/metrics"
 	"go-mysql-transfer/model"

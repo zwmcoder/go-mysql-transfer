@@ -18,9 +18,11 @@
 package endpoint
 
 import (
-	"github.com/siddontang/go-mysql/canal"
+	"encoding/json"
 	"log"
 	"strconv"
+
+	"github.com/siddontang/go-mysql/canal"
 
 	"github.com/juju/errors"
 	"github.com/siddontang/go-mysql/mysql"

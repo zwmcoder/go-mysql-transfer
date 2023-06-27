@@ -23,19 +23,17 @@ import (
 	"strings"
 	"time"
 
-	jsoniter "github.com/json-iterator/go"
 	"github.com/siddontang/go-mysql/canal"
 	"github.com/siddontang/go-mysql/mysql"
 	"github.com/siddontang/go-mysql/schema"
 
+	"encoding/json"
 	"go-mysql-transfer/global"
 	"go-mysql-transfer/model"
 	"go-mysql-transfer/service/luaengine"
 	"go-mysql-transfer/util/logs"
 	"go-mysql-transfer/util/stringutil"
 )
-
-var json = jsoniter.ConfigCompatibleWithStandardLibrary
 
 const defaultDateFormatter = "2006-01-02"
 

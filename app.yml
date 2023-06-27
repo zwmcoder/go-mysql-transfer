@@ -1,7 +1,7 @@
 # mysql配置
 addr: 127.0.0.1:3306
 user: root
-pass: root
+pass: zhangwm1987
 charset : utf8
 slave_id: 1001 #slave ID
 flavor: mysql #mysql or mariadb,默认mysql
@@ -71,8 +71,8 @@ redis_addrs: 127.0.0.1:6379 #redis地址，多个用逗号分隔
 #规则配置
 rule:
   -
-    schema: eseap #数据库名称
-    table: t_user #表名称
+    schema: test #数据库名称
+    table: user #表名称
     #order_by_column: id #排序字段，存量数据同步时不能为空
     #column_lower_case:false #列名称转为小写,默认为false
     #column_upper_case:false#列名称转为大写,默认为false

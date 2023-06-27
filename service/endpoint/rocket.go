@@ -19,10 +19,11 @@ package endpoint
 
 import (
 	"context"
-	"github.com/siddontang/go-mysql/canal"
 	"log"
 	"strings"
 	"sync"
+
+	"github.com/siddontang/go-mysql/canal"
 
 	"github.com/apache/rocketmq-client-go/v2"
 	"github.com/apache/rocketmq-client-go/v2/primitive"
@@ -31,6 +32,7 @@ import (
 	"github.com/juju/errors"
 	"github.com/siddontang/go-mysql/mysql"
 
+	"encoding/json"
 	"go-mysql-transfer/global"
 	"go-mysql-transfer/metrics"
 	"go-mysql-transfer/model"
@@ -113,7 +115,7 @@ func (s *RocketEndpoint) Consume(from mysql.Position, rows []*model.RowRequest) 
 		}
 	}
 
-	if len(ms) ==0{
+	if len(ms) == 0 {
 		return nil
 	}
 

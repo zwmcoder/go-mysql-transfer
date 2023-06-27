@@ -4,13 +4,11 @@ import (
 	"fmt"
 	"go-mysql-transfer/service"
 	"go-mysql-transfer/util/dates"
-	"go-mysql-transfer/util/nets"
 	"log"
 	"net/http"
-	"path"
 	"strconv"
-	"time"
 
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 
 	"go-mysql-transfer/global"
@@ -20,6 +18,7 @@ import (
 
 var _server *http.Server
 
+/*
 func Start() error {
 	if !global.Cfg().EnableWebAdmin { //哨兵
 		return nil
@@ -30,7 +29,7 @@ func Start() error {
 	//statics := "D:\\statics"
 	//index := "D:\\statics\\index.html"
 
-	statics := "statics"
+	statics := "web/statics"
 	index := path.Join(statics, "index.html")
 	g.Static("/statics", statics)
 	g.LoadHTMLFiles(index)
@@ -54,6 +53,29 @@ func Start() error {
 	log.Println(fmt.Sprintf("Web Admin Listen At %s", listen))
 	go func() {
 		if err := _server.ListenAndServe(); err != nil {
+			logs.Error(err.Error())
+		}
+	}()
+
+	return nil
+}
+*/
+func Start() error {
+	if !global.Cfg().EnableWebAdmin { //哨兵
+		return nil
+	}
+
+	r := gin.Default()
+	r.Use(static.Serve("/", static.LocalFile("web/statics", false)))
+
+	r.GET("/", webAdminFunc)
+
+	port := global.Cfg().WebAdminPort
+	listen := fmt.Sprintf(":%s", strconv.Itoa(port))
+
+	log.Println(fmt.Sprintf("Web Admin Listen At %s", listen))
+	go func() {
+		if err := r.Run(listen); err != nil {
 			logs.Error(err.Error())
 		}
 	}()
